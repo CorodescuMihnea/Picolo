@@ -1,2 +1,2 @@
 # Picolo
-API for Picolo DAWJS project
+Picolo DAWJS project
