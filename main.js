@@ -11,7 +11,7 @@ var certificate = fs.readFileSync('server.cert', 'utf8');
 var credentials = {key: privateKey, cert: certificate};
 var express = require('express');
 var app = express();
-app.use(express.static('C:\\Users\\Alex\\Desktop\\Picolo v2'));
+app.use(express.static('C:\\Users\\Alex\\Desktop\\dawjs proiect\\Picolo'));
 
 
 // your express configuration here
