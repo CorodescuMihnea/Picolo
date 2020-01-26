@@ -1,0 +1,57 @@
+<html>
+<head>
+	</head>
+
+<body>
+	  <script type="text/javascript" src="/loadSW.js"></script>
+
+	<form id="image_form">
+		Url:<input type="text" name="url">
+		W:<input type="text" name="width">
+		H:<input type="text" name="height">
+		<input type="submit">
+	</form>
+
+	
+</body>
+
+</html>
+
+<script>
+
+	document.getElementById("image_form").addEventListener("submit", function(event){
+
+ 
+   var url=this.elements["url"].value;
+   navigator.serviceWorker.controller.postMessage("hello");
+ 
+ 
+});
+
+ navigator.serviceWorker.addEventListener('message', function handler (event) {
+  console.log(event.data);
+});
+
+/*
+	var worker= new Worker('C:\\Users\\Alex\\Desktop\\Picolo\\PiColo\\service_worker.js');
+
+	worker.addEventListener('message', function(e) {
+  console.log('Worker said: ', e.data);
+}, false);
+	
+
+		document.getElementById("image_form").addEventListener("submit", function(event){
+  event.preventDefault();
+
+
+
+console.log(this.elements["url"].value);
+  var url=this.elements["url"].value;
+  var width=this.elements["width"].value;
+    var width=this.elements["height"].value;
+
+	worker.postMessage(url); 
+
+
+});*/
+</script>
