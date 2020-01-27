@@ -1,4 +1,6 @@
 
+self.importScripts('image_compression.js');
+
 self.addEventListener('install', function(event) {
     event.waitUntil(self.skipWaiting()); // Activate worker immediately
 });
