@@ -1,27 +1,44 @@
-// Include 
-var fs = require('fs');
+"use strict";
+
+console.log("Starting server ...")
+// Include
+const fs = require('fs');
 const path = require('path');
-var https = require('https');
-// Set cert 
-var privateKey  = fs.readFileSync('server.key', 'utf8');
-var certificate = fs.readFileSync('server.cert', 'utf8');
-var credentials = {key: privateKey, cert: certificate};
+const https = require('https');
+const express = require('express');
+const mysql = require('mysql');
 
-var express = require('express');
-var app = express();
-app.use(express.static('C:\\Users\\Alex\\Desktop\\dawjs proiect\\Picolo'));
+// Init express app
+const app = express();
+const cfgFile = fs.readFileSync('./projectCfgConsts.json', 'utf8');
+global.cfgJson = JSON.parse(cfgFile);
+app.use(express.static(cfgJson.projectPath));
 
-// TODO: add route dispath
-app.get('/',function(req,res){
-   res.sendFile(path.join(__dirname+'/pages/login.html'));
-  //__dirname : It will resolve to your project folder.
+// Create db connection
+const connection = mysql.createConnection({
+  host: cfgJson.dbHost,
+  database: cfgJson.dbName,
+  user: cfgJson.dbUser,
+  password: cfgJson.dbPass
 });
 
-app.get('/index.html',function(req,res){
-   res.sendFile(path.join(__dirname+'/index.html'));
-  //__dirname : It will resolve to your project folder.
-});
+// Add router
+const router = express.Router();
+// Require the route handlers
+const registerRoute = require('./routes/register.js');
+const loginRoute = require('./routes/login.js');
+// Assign handlers to express app
+router.post('/register', registerRoute.register);
+// THIS IS SET TO GET FOR TESTING IN BROWSER, CHANGE TO POST 
+router.get('/login', loginRoute.login);
 
+// Add the router to the default route
+app.use('/api', router);
+// Create the https server 
+let privateKey = fs.readFileSync('server.key', 'utf8');
+let certificate = fs.readFileSync('server.cert', 'utf8');
+let credentials = { key: privateKey, cert: certificate };
+let httpsServer = https.createServer(credentials, app);
+httpsServer.listen(8008);
 
-var httpsServer = https.createServer(credentials, app);
-httpsServer.listen(3000);
+console.log("Server started successfully")

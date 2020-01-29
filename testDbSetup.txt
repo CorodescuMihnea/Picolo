@@ -1,0 +1,24 @@
+1.install mysql-server
+
+2. open a root mysql shell
+
+3.1. uninstall plugin validate_password; 
+3.2. CREATE USER 'picolo'@'localhost' IDENTIFIED BY 'picolo';
+3.3. ALTER USER 'picolo'@'localhost' IDENTIFIED WITH mysql_native_password BY 'picolodawjs';
+3.4. exit
+
+4.1.1. mysql -u picolo -p
+4.1.2. type in 'picolodawjs' without the quotes when asked for password
+4.2. CREATE DATABASE picolodb;
+4.3. USE picolodb;
+4.4. 
+CREATE TABLE `users` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `first_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+    `last_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+    `email` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+    `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+    `created` datetime NOT NULL,
+    `modified` datetime NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
