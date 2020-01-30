@@ -1,7 +1,7 @@
 const mysql = require('mysql');
 
 exports.register = function (req, res) {
-	message = 'SHIT FUCK';
+	message = '';
 	if (req.method == "POST") {
 		const reqData = req.body;
 		const timestamp = Math.round((new Date()).getTime() / 1000000);
@@ -20,7 +20,7 @@ exports.register = function (req, res) {
 			password: cfgJson.dbPass
 		});
 
-		global.connection.connect();
+		connection.connect();
 
 		// connection.ping(function (err) {
 		// 	if (err) throw err;

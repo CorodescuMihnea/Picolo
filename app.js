@@ -1,9 +1,11 @@
 // Include
-const fs = require('fs')
-	, path = require('path')
-	, https = require('https')
-	, express = require('express')
-	, bodyParser = require('body-parser');
+const fs = require('fs'),
+	path = require('path'),
+	https = require('https'),
+	express = require('express'),
+	express_session = require('express-session'),
+	bodyParser = require('body-parser');
+
 
 console.log("Starting server ...")
 
@@ -19,6 +21,13 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(express_session({
+  secret: 'fml',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { maxAge: 60000 }
+}))
 
 // Add the router to the default route
 
@@ -36,6 +45,9 @@ const router = express.Router();
 // Require the route handlers
 const registerRoute = require('./controllers/register.js');
 const loginRoute = require('./controllers/login.js');
+const dashboardRoute = require('./controllers/dashboard.js');
+const workerRoute = require('./controllers/worker.js');
+
 // Add the routes
 router.get('/', loginRoute.login);
 router.post('/', loginRoute.login);
@@ -45,5 +57,10 @@ router.post('/login', loginRoute.login);
 
 router.get('/register', registerRoute.register);
 router.post('/register', registerRoute.register);
+
+router.get('/dashboard', dashboardRoute.getDashboard);
+
+router.get('/worker', workerRoute.getWorker);
+
 
 app.use('/', router);

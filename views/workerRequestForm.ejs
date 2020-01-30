@@ -1,0 +1,42 @@
+<html lang="en">
+<%- include ('header') -%>
+	<div class="fml">
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<div class="panel-title">Request worker</div>
+			</div>
+
+		<div class="panel-body">
+			<form class="form-horizontal" role="form" method="post" action="/worker" onSubmit="return checkblank(this);">
+				<% if (message.length > 0) { %>
+				<div class="alert alert-success col-sm-12"><%= message %></div>
+				<% } %>
+				<div id="signupalert" style="display:none" class="alert alert-danger">
+					<p>Error:</p>
+					<span></span>
+				</div>
+
+				<div class="form-group">
+					<label for="option1" class="col-md-3 control-label">option1</label>
+					<div class="col-md-9">
+						<input type="radio" class="form-control" name="option1" placeholder="option1">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="option2" class="col-md-3 control-label">option2</label>
+					<div class="col-md-9">
+						<input type="radio" class="form-control" name="option2" placeholder="option2">
+					</div>
+				</div>
+
+				<div class="form-group">
+					<!-- Button -->
+					<div class="col-md-offset-3 col-md-9">
+						<button id="btn-signup" type="submit" class="btn btn-info"><i class="icon-hand-right"></i> &nbsp Request</button>
+					</div>
+				</div>
+
+			</form>
+		</div>
+	</div>
+<%- include ('footer') -%>

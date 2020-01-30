@@ -1,16 +1,15 @@
 const mysql = require('mysql');
 
 exports.login = function (req, res) {
-	message = 'SHIT FUCK';
-	const sess = req.session;
+	message = '';
+	var sess = req.session;
 
 	if (req.method == "POST") {
-		const post = req.body;
-		const name = post.user_name;
-		const pass = post.password;
-		
-		const sql = "SELECT id, first_name, last_name, email FROM `users` WHERE `email`='" + email + 
-			"' and password = '" + pass + "'";
+		const reqData = req.body;
+		// YES YES HASH THAT SHIT
+		const sql = "SELECT id, first_name, last_name, email FROM `users` WHERE `email`='" + reqData.email + 
+			"' and password = '" + reqData.password + "'";
+		console.log(sql);
 
 		connection = mysql.createConnection({
 			host: cfgJson.dbHost,
@@ -27,7 +26,7 @@ exports.login = function (req, res) {
 				req.session.userId = results[0].id;
 				req.session.user = results[0];
 				console.log(results[0].id);
-				res.redirect('/home/dashboard');
+				res.redirect('/dashboard');
 			}
 			else {
 				message = 'Wrong Credentials.';
@@ -35,6 +34,7 @@ exports.login = function (req, res) {
 			}
 		});
 	} else {
+		message = '';
 		res.render('login', { message: message });
 	}
 }
