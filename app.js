@@ -61,6 +61,6 @@ router.post('/register', registerRoute.register);
 router.get('/dashboard', dashboardRoute.getDashboard);
 
 router.get('/worker', workerRoute.getWorker);
-
+router.post('/worker', workerRoute.getWorker);
 
 app.use('/', router);
