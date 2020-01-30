@@ -2,16 +2,18 @@
   "name": "picolo",
   "version": "1.0.0",
   "description": "",
-  "main": "main.js",
+  "main": "app.js",
   "scripts": {
-    "devstart": "node_modules/nodemon/bin/nodemon.js ./main.js",
-    "start": "node_modules/nodemon/bin/nodemon.js main.js",
+    "start": "node_modules/nodemon/bin/nodemon.js app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^3.0.1",
     "express": "^4.17.1",
+    "express-session": "^1.17.0",
     "mysql": "^2.18.1"
   },
   "devDependencies": {
