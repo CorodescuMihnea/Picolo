@@ -3,5 +3,6 @@
     "dbHost" : "localhost",
     "dbName" : "picolodb",
     "dbUser" : "picolo",
-    "dbPass" : "picolodawjs"
+		"dbPass" : "picolodawjs",
+		"port" : 8008
 }

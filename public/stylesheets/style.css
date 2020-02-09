@@ -1,0 +1,38 @@
+.container {
+	position: relative;
+	margin: 0 0 1em;
+	padding: 1em;
+  background: white;
+  border: 1px solid black;
+}
+
+.form {
+
+}
+
+.form-group {
+
+}
+
+.label {
+}
+
+.input {
+
+}
+
+.header {
+	
+}
+
+.alert {
+
+}
+
+.btn {
+  border-radius: 3px;
+  border: 2px solid rgb(128, 112, 216);
+  color: rgb(128, 112, 216);
+  margin: 0 1em;
+  padding: 0.25em 1em;
+}

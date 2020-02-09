@@ -1,51 +1,44 @@
-<html lang="en">
 <%- include ('header') -%>
-	<div class="fml">
-		<div class="panel panel-info">
-			<div class="panel-heading">
-				<div class="panel-title">Request worker</div>
+	<div class="container">
+		<form class="form" role="form" method="post" action="/workerView" onSubmit="return checkblank(this);">
+			<div class="header">Request worker</div>
+			<% if (message.length > 0) { %>
+			<div class="alert alert-success col-sm-12"><%= message %></div>
+			<% } %>
+			<div id="signupalert" style="display:none" class="alert">
+				<p>Error:</p>
+				<span></span>
 			</div>
 
-		<div class="panel-body">
-			<form class="form-horizontal" role="form" method="post" action="/worker" onSubmit="return checkblank(this);">
-				<% if (message.length > 0) { %>
-				<div class="alert alert-success col-sm-12"><%= message %></div>
-				<% } %>
-				<div id="signupalert" style="display:none" class="alert alert-danger">
-					<p>Error:</p>
-					<span></span>
+			<div class="form-group">
+				<label for="imagesLocationUrl" class="label">Images location url</label>
+				<div class="container">
+					<input type="text" class="form-control" name="imagesLocationUrl" placeholder="url">
 				</div>
+			</div>
 
-				<div class="form-group">
-					<label for="imagesLocationUrl" class="col-md-3 control-label">Images location url</label>
-					<div class="col-md-9">
-						<input type="text" class="form-control" name="imagesLocationUrl" placeholder="url">
-					</div>
+			<div class="form-group">
+				<label for="compressWithLoss" class="label">Compress with loss</label>
+				<div class="container">
+					<input type="checkbox" class="" name="compressWithLoss">
 				</div>
+			</div>
 
-				<div class="form-group">
-					<label for="compressWithLoss" class="col-md-3 control-label">Compress with loss</label>
-					<div class="col-md-9">
-						<input type="checkbox" class="" name="compressWithLoss">
-					</div>
+			<div class="form-group">
+				<label for="Quality" class="label">Img Quality</label>
+				<div class="container">
+					<input type="radio" name="qualiy" value="low"> Low
+					<input type="radio" name="qualiy" value="medium"> Medium
+					<input type="radio" name="qualiy" value="high"> High
 				</div>
+			</div>
 
-				<div class="form-group">
-					<label for="Quality" class="col-md-3 control-label">Img Quality</label>
-					<div class="col-md-9">
-						<input type="radio" name="qualiy" value="low"> Low
-						<input type="radio" name="qualiy" value="medium"> Medium
-						<input type="radio" name="qualiy" value="high"> High
-					</div>
+			<div class="form-group">
+				<div class="container">
+					<button id="btn-signup" type="submit" class="btn"><i class="icon-hand-right"></i> &nbsp Request</button>
 				</div>
+			</div>
 
-				<div class="form-group">
-					<div class="col-md-offset-3 col-md-9">
-						<button id="btn-signup" type="submit" class="btn btn-info"><i class="icon-hand-right"></i> &nbsp Request</button>
-					</div>
-				</div>
-
-			</form>
-		</div>
+		</form>
 	</div>
 <%- include ('footer') -%>

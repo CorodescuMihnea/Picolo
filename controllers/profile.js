@@ -1,6 +1,6 @@
 const mysql = require('mysql');
 
-exports.getDashboard = function (req, res) {
+exports.getProfile = function (req, res) {
 	message = '';
 	const user = req.session.user,
 		userId = req.session.userId;
@@ -22,7 +22,11 @@ exports.getDashboard = function (req, res) {
 	connection.query(sql, function (err, results) {
 		if (err) console.log(err);
 		console.log(results);
-		res.render('dashboard.ejs', { user: user });
+		res.render('profile.ejs', { user: user });
 		connection.end();
 	});
+}
+
+exports.updateProfile = function (req, res) {
+	"";
 }
