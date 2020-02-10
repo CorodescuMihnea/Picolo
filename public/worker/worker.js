@@ -7,6 +7,8 @@ function processImg(imgBlob, params) {
 	let lossy = params.lossy;
 	let quality = params.quality;
 
+
+
 }
 
 function canUseWebP() {
@@ -47,39 +49,30 @@ self.addEventListener('message', event => {
 self.addEventListener('fetch', (event) => {
 	console.log(event.request);
   event.respondWith(
-    // caches.match(event.request).then((resp) => {
-    //   return resp || fetch(event.request).then((response) => {
-    //     return caches.open(REQ_CACHE_NAME).then((cache) => {
-		// 			let modifiedResponse = response.clone();
-		// 			event.waitUntil(fetch())
-		// 			cache.put(event.request, modifiedResponse);				
-    //       return modifiedResponse;
-    //     });  
-    //   });
-		// })
-		fetch(event.request)
-			.then((response) => {
-					// return any request that is not an img request
-					if (response.ok && response.destination !== "image") return response;
-					// request is prolly not an img or a problem was encountered
-					let localImgUrl;
-					if (isImage(event.request)) {
-						fetch(event.request)
-							.then(response => response.blob)
-							.then(images =>{
-								localImgUrl = URL.createObjectURL(images);
-								console.log(localImgUrl);
-							})
-							.catch((err) => {
-								console.log(err);
-							})
-						let resp = new Response();
-						return caches.match(request);
-					}
-			})
-			.catch((err) => {
-				console.log(err);
-					// User is probably offline
-			})
-  );
-});
+    caches.match(event.request).then((resp) => {
+			return resp || fetch(event.request)
+				.then((response) => {
+					return caches.open(REQ_CACHE_NAME)
+						.then((cache) => {				
+							if (response.ok && response.destination !== "image") {
+								cache.put(event.request, response.clone());
+								return response;
+							} else if (isImage(event.request)) {
+								// Do processing and caching
+								// response = processImg(response.clone().blob(), workerParams);
+								const reqUrl = "http://localhost:8008/process";
+								const payload = {method: 'POST', body: response.clone().blob()};
+								const processingRequest = new Request(reqUrl, payload);
+								console.log(processingRequest);
+								fetch(processingRequest)
+									.then((response) => {
+										console.log(response.clone())
+									})
+								console.log(response.clone().blob());
+								return response;
+							}
+        		});  
+      	});
+		})
+	)
+})

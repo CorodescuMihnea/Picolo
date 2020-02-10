@@ -39,6 +39,7 @@ let httpsServer = https.createServer(credentials, app);
 // httpsServer.listen(cfgJson.port);
 // Can't test when using https, only works when enabling this option in google chrome:
 // chrome://flags/#unsafely-treat-insecure-origin-as-secure
+// 
 const http = require('http');
 http.createServer(app).listen(cfgJson.port);
 
@@ -53,6 +54,7 @@ const dashboardRoute = require('./controllers/dashboard.js');
 const workerRoute = require('./controllers/worker.js');
 const logoutRoute = require('./controllers/logout.js');
 const profileRoute = require('./controllers/profile.js');
+const processRoute = require('./controllers/process.js');
 
 // Add the routes
 router.get('/', loginRoute.login);
@@ -72,6 +74,8 @@ router.get('/logout', logoutRoute.logout);
 
 router.get('/profile', profileRoute.getProfile);
 router.put('/profile', profileRoute.updateProfile);
+
+router.post('/process', processRoute.processBlob);
 
 app.use('/', router);
 
