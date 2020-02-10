@@ -1,17 +1,20 @@
 if ('serviceWorker' in navigator) {
 	navigator.serviceWorker.register(
-		'localhost:8008/public/worker/worker.js', 
-		{scope: '/'})
-  .then((reg) => {
-    // registration worked
+		'<%= workerUrl %>', 
+		{scope: '/worker/'}
+	).then((reg) => {
 		console.log('Registration succeeded. Scope is ' + reg.scope);
-		navigator.serviceWorker.controller.postMessage({
-			"domain": "",
-			"quality": "",
-			"loseless": false
-		});
-  }).catch((error) => {
-    // registration failed
-    console.log('Registration failed with ' + error);
-  });
+		navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {
+			return serviceWorkerRegistration.pushManager.getSubscription();
+		}).then(function(subscription) {
+			navigator.serviceWorker.controller.postMessage({
+				"domain": "<%= domain %>",
+				"imgUrl": "<%= imgUrl %>",
+				"lossy": "<%= lossy %>",
+				"quality": "<%= quality %>"
+			});
+		})
+	}).catch((error) => {
+		console.log('Registration failed with ' + error);
+	});
 }
