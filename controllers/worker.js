@@ -1,6 +1,6 @@
 const mysql = require('mysql');
 
-exports.getWorkerView = function (req, res) {
+exports.getWorker = function (req, res) {
 	message = '';
 	const user = req.session.user,
 		userId = req.session.userId;
@@ -24,23 +24,21 @@ exports.getWorkerView = function (req, res) {
 		console.log(results);
 
 		if (req.method == "POST") {
-			console.log(req.body)
-			params = {};
-			res.render('workerContainer.ejs', { user: user, params: params });
+			console.log(req.body);
+			params = {
+				pageName: "dashboard",
+				domain: req.body.domain,
+				imgUrl: req.body.imgUrl,
+				lossy: req.body.lossy,
+				quality: req.body.quality
+			};
+			// Push worker entry in db
+			res.render('workerContainer.ejs', params);
 			// message = "HERE IS YOUR SLAVE";
 		}
 		else {
-			res.render('workerRequestForm.ejs', { user: user });
+			message = "Something went wrong";
+			res.render('dashboard.ejs', { message: message });
 		}
 	});
 } 
-
-exports.getWorker = function (req, res) {
-	const reqData = req.body;
-	/**
-	 * do the actual worker creating
-	 */
-
-	// Use res sendFile to actually send the worker
-	res.send("MAKE THIS MESSAGE GREAT AGAIN ");
-}

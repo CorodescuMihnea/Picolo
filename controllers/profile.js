@@ -22,7 +22,8 @@ exports.getProfile = function (req, res) {
 	connection.query(sql, function (err, results) {
 		if (err) console.log(err);
 		console.log(results);
-		res.render('profile.ejs', { user: user });
+		let pageName = "profile";
+		res.render('profile.ejs', { user: user, pageName: pageName });
 		connection.end();
 	});
 }

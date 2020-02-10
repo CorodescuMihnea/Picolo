@@ -6,45 +6,39 @@
 	<link rel='stylesheet' href='stylesheets/style.css' />
 </head>
 
-<body id="clrblk">
-	<div id="loginbox" style="margin-top:50px;" class="container">
-		<div class="container">
-			<div class="header">Sign In
-			</div>
-		</div>
+<body>
+	<% if (message.length > 0) { %>
+		<div class="alert"><%= message %></div>
+	<% } %>
 
-		<div class="container">
-			<% if (message.length > 0) { %>
-			<div class="alert"><%= message %></div>
-			<% } %>
+	<% if (animate === true) { %>
+		<div class="wrapper form fadeInDown">
+	<% } else {%>
+		<div class="wrapper form">
+	<% } %>
 
-			<form id="loginform" class="form" role="form" method="post" action="/login">
-				<div class="form-group">
-					<input id="login-email" type="text" class="input" name="email" value="" placeholder="email">
-				</div>
+		<div class="container form">
+			<h2 class="active"> 
+				<a href="#">Sign In
+				</a>
+			</h2>
 
-				<div class="form-group">
-					<input id="login-password" type="password" class="form-control" name="password" placeholder="password">
-				</div>
-
-				<div class="form-group">
-					<button id="btn-login" type="submit" class="btn">Login </button>
-				</div>
-
-				<div class="form-group">
-					<div class="">
-						<div">
-							Don't have an account!
-							<a href="/register">
-								Register Here
-							</a>
-						</div>
-					</div>
-				</div>
-				
+			<h2 class="inactive underlineHover">
+				<a href="/register">Sign Up
+				</a>
+			</h2>
+			
+			<form role="form" method="post" action="/login">
+				<input type="text" id="email" class="fadeIn second" name="email" placeholder="email">
+				<input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
+				<input type="submit" class="fadeIn fourth" value="Log In">
 			</form>
-		</div>
 
+			<div class="container-footer">
+				<a class="underlineHover" href="#">Forgot Password?</a>
+			</div>
+
+		</div>
 	</div>
 </body>
 

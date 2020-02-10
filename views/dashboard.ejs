@@ -1,10 +1,21 @@
 <html lang="en">
 <%- include ('header') -%>
-	<div class="fml">
-		<h1 class="header">Welcome</h1>
-		<p>
-			<a href="/profile" role="button">Profile</a>
-			<a href="/workerView" role="button">Request worker</a>
-		</p>
+	<div class="container form">
+		<form role="form" method="post" action="/worker">
+			<input type="text" id="domain" class="" name="domain" placeholder="Domain">
+			<input type="text" id="imgUrl" class="" name="imgUrl" placeholder="Img Location URL">
+			<div>
+				<div>Compress</div>
+				<input type="radio" name="lossy" value="true"> True
+				<input type="radio" name="lossy" value="false"> False
+			</div>
+			<div>
+				<div>Quality</div>
+				<input type="radio" name="quality" value="low"> Low
+				<input type="radio" name="quality" value="medium"> Medium
+				<input type="radio" name="quality" value="high"> High
+			</div>
+			<input type="submit" class="" value="Request Worker">
+		</form>
 	</div>
 <%- include ('footer') -%>

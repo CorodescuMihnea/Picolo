@@ -1,4 +1,24 @@
 <%- include ('header') -%>
 <div class="container">
+	<div>
+		&lt;script&gt;
+			if ('serviceWorker' in navigator) {
+				navigator.serviceWorker.register(
+					'https://localhost:8008/public/worker/worker.js', 
+					{scope: '/'}
+				).then((reg) => {
+					console.log('Registration succeeded. Scope is ' + reg.scope);
+					navigator.serviceWorker.controller.postMessage({
+						"domain": "<%= domain %>",
+						"imgUrl": "<%= imgUrl %>",
+						"lossy": <%= lossy %>,
+						"quality": "<%= quality %>"
+					});
+				}).catch((error) => {
+					console.log('Registration failed with ' + error);
+				});
+			}
+		&lt;/script&gt;
+	</div>
 </div>
 <%- include ('footer') -%>

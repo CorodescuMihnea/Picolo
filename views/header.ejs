@@ -5,14 +5,30 @@
 		<link rel='stylesheet' href='stylesheets/style.css' />
 </head>
 <body>
-  <div class="container">
-    <nav class="navbar">
-      <div class="container">
-          <ul class="navbar-elem">
-            <li class="active"><a href="/dashboard">Home</a></li>
-          </ul>
-          <ul class="navbar-elem">
-            <li><a href="/logout">Logout</a></li>
-          </ul>
-      </div>
-    </nav>
+		<div id="navbar">
+			<% if (pageName.length > 0 && pageName == "dashboard") { %>
+				<h2 class="active float-left"> 
+					<a class="nav-link" href="/dashboard">Home</a>
+				</h2>
+			<% } else { %>
+				<h2 class="inactive underlineHover float-left"> 
+					<a class="nav-link" href="/dashboard">Home</a>
+				</h2>
+			<% } %>
+
+			<% if (pageName.length > 0 && pageName == "profile") { %>
+				<h2 class="active float-left"> 
+					<a class="nav-link" href="/profile">Profile</a>
+				</h2>
+			<% } else { %>
+				<h2 class="inactive underlineHover float-left">
+					<a class="nav-link" href="/profile">Profile</a>
+				</h2>
+			<% } %>
+				
+			<h2 class="inactive underlineHover float-right">
+				<a class="nav-link" href="/logout">Logout</a>
+			</h2>
+
+			</div>
+		<div class= "wrapper">

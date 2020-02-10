@@ -30,11 +30,13 @@ exports.login = function (req, res) {
 			}
 			else {
 				message = 'Wrong Credentials.';
-				res.render('login', { message: message });
+				res.render('login', { message: message, animate:false });
 			}
 		});
 	} else {
 		message = '';
-		res.render('login', { message: message });
+		let animate = false;
+		if (req.body.animate === true) animate = true;
+		res.render('login', { message: message, animate:animate });
 	}
 }

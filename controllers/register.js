@@ -5,6 +5,12 @@ exports.register = function (req, res) {
 	if (req.method == "POST") {
 		const reqData = req.body;
 		const timestamp = Math.round((new Date()).getTime() / 1000000);
+
+		if (reqData.confirm_password != reqData.password) {
+			message = "Password doesn't match";
+			res.render('register.ejs', { message: message, animate: true });
+			return;
+		}
 		// YES I KNOW I SHOULD HASH THE F... PASSWORD
 		const sql = "INSERT INTO `users`(`first_name`,`last_name`,`email`, `password`) VALUES ('" + 
 			reqData.first_name + "','" + 
@@ -31,12 +37,12 @@ exports.register = function (req, res) {
 			if (err) console.log(err);
 			
 			message = "Success! Your account has been created.";
-			res.render('register.ejs', { message: message });
+			res.render('login.ejs', { message: message, animate: true });
 			connection.commit(function () {
 				connection.end();
 			});
 		});
 	} else {
-		res.render('register', { message : message });
+		res.render('register', { message: message, animate: false });
 	}
 };

@@ -20,3 +20,12 @@ CREATE TABLE `users` (
     `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+4.5
+CREATE TABLE `workers` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+		`uid` int(11) NOT NULL,
+    `domain` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+    `lossy` int(1) ,
+    `quality` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;

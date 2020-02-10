@@ -62,10 +62,7 @@ router.post('/register', registerRoute.register);
 
 router.get('/dashboard', dashboardRoute.getDashboard);
 
-router.get('/workerView', workerRoute.getWorkerView);
-router.post('/workerView', workerRoute.getWorkerView);
-
-router.get('/worker', workerRoute.getWorker);
+router.post('/worker', workerRoute.getWorker);
 
 router.get('/logout', logoutRoute.logout);
 

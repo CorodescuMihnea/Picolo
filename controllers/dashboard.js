@@ -22,7 +22,8 @@ exports.getDashboard = function (req, res) {
 	connection.query(sql, function (err, results) {
 		if (err) console.log(err);
 		console.log(results);
-		res.render('dashboard.ejs', { user: user });
+		let pageName = "dashboard"
+		res.render('dashboard.ejs', { user: user, pageName: pageName });
 		connection.end();
 	});
 }
