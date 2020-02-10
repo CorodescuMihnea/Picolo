@@ -1,3 +1,11 @@
+function canUseWebP() {
+	var elem = document.createElement('canvas');
+	if (!!(elem.getContext && elem.getContext('2d'))) {
+			return elem.toDataURL('image/webp').indexOf('data:image/webp') == 0;
+	}
+	return false;
+}
+
 if ('serviceWorker' in navigator) {
 	navigator.serviceWorker.register(
 		'<%= workerUrl %>', 
@@ -8,6 +16,7 @@ if ('serviceWorker' in navigator) {
 			return serviceWorkerRegistration.pushManager.getSubscription();
 		}).then(function(subscription) {
 			navigator.serviceWorker.controller.postMessage({
+				"webp": canUseWebP(),
 				"domain": "<%= domain %>",
 				"imgUrl": "<%= imgUrl %>",
 				"lossy": "<%= lossy %>",
