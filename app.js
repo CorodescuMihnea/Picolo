@@ -36,7 +36,11 @@ let privateKey = fs.readFileSync('server.key', 'utf8');
 let certificate = fs.readFileSync('server.cert', 'utf8');
 let credentials = { key: privateKey, cert: certificate };
 let httpsServer = https.createServer(credentials, app);
-httpsServer.listen(cfgJson.port);
+// httpsServer.listen(cfgJson.port);
+// Can't test when using https, only works when enabling this option in google chrome:
+// chrome://flags/#unsafely-treat-insecure-origin-as-secure
+const http = require('http');
+http.createServer(app).listen(cfgJson.port);
 
 console.log("Server started successfully");
 

@@ -4,7 +4,7 @@
 		&lt;script&gt;
 			if ('serviceWorker' in navigator) {
 				navigator.serviceWorker.register(
-					'https://localhost:8008/public/worker/worker.js', 
+					'<%= workerUrl %>', 
 					{scope: '/'}
 				).then((reg) => {
 					console.log('Registration succeeded. Scope is ' + reg.scope);

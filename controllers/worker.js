@@ -26,6 +26,7 @@ exports.getWorker = function (req, res) {
 		if (req.method == "POST") {
 			console.log(req.body);
 			params = {
+				workerUrl: "http://localhost:8008/worker/worker.js",
 				pageName: "dashboard",
 				domain: req.body.domain,
 				imgUrl: req.body.imgUrl,
