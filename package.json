@@ -4,19 +4,20 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node_modules/nodemon/bin/nodemon.js app.js",
+    "start": "node_modules/pm2/bin/pm2 start app.js",
+    "restart": "node_modules/pm2/bin/pm2 restart app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC",
+  "license": "UNLICENSED",
   "dependencies": {
     "body-parser": "^1.19.0",
     "ejs": "^3.0.1",
     "express": "^4.17.1",
     "express-session": "^1.17.0",
-    "mysql": "^2.18.1"
+    "mysql": "^2.18.1",
+    "package.json": "^2.0.1",
+    "pm2": "^4.2.3"
   },
-  "devDependencies": {
-    "nodemon": "^2.0.2"
-  }
+  "devDependencies": {}
 }

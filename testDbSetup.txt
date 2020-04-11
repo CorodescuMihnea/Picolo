@@ -28,4 +28,4 @@ CREATE TABLE `workers` (
     `lossy` int(1) ,
     `quality` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;\n
